@@ -1,0 +1,376 @@
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-image: url("../image/bg-html.jpg");
+}
+
+a{
+    text-decoration: none;
+}
+
+.header {
+    background-image: url("../image/bg-menu.jpg");
+    background-color: #f8f9fa;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-dat-phong {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-dat-phong:hover {
+    background-color: black;
+    color: white;
+}
+
+nav a {
+    padding: 0 20px;
+    color: rgba(53, 53, 53, 0.95);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.offcanvas-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    height: 100%;
+    width: 300px;
+    background-color: #ffffff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1045;
+    padding-top: 50px;
+}
+
+.offcanvas-menu.active {
+    left: 0;
+}
+
+.offcanvas-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.offcanvas-menu ul li {
+    margin: 15px 0;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.offcanvas-menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333333;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+}
+
+.offcanvas-menu ul li a:hover {
+    background-color: #f0f0f0;
+}
+
+.offcanvas-menu ul li a i {
+    font-size: 16px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1040;
+}
+
+.overlay.active {
+    display: block;
+}
+
+#menu-toggle i {
+    transition: transform 0.3s ease;
+}
+
+#menu-toggle.menu-open i {
+    transform: rotate(90deg);
+    content: "\f00d";
+    /* Dấu X từ Font Awesome */
+}
+
+#menu-toggle.menu-open .fa-bars {
+    display: none;
+}
+
+#menu-toggle.menu-open .fa-times {
+    display: inline-block;
+}
+
+.fa-times {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    /* Ẩn menu chính và hiển thị hamburger menu dưới 992px */
+    nav {
+        display: none;
+    }
+
+    .btn-dat-phong.d-md-none {
+        display: block;
+    }
+
+    #menu-toggle {
+        display: block;
+    }
+}
+
+/* ---- banner ---- */
+.banner {
+    height: 100vh;
+    width: 100%;
+    background-image: url(../image/banner.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.banner-content h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    margin-bottom: 1rem;
+}
+
+.banner-content p {
+    font-size: 1.25rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    margin-bottom: 2rem;
+}
+
+.banner-content .btn {
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.banner-content .btn:hover {
+    background-color: #004080;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+table tr th {
+    font-size: 1.5rem;
+}
+
+.table-responsive h2 {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .map {
+        margin-top: 10px;
+    }
+
+    .table-responsive h2 span {
+        font-size: 20px;
+    }
+
+    .banner {
+        height: 40vh;
+    }
+
+    .video iframe {
+        width: 100% !important;
+        height: 230px;
+    }
+
+    table th,
+    table td {
+        font-size: clamp(0.6rem, 2vw, 1rem) !important;
+        /* Kích thước linh hoạt từ nhỏ đến lớn */
+        word-wrap: break-word;
+    }
+
+    #section_3 > div,
+    #section_4 > div {
+        width: 100% !important;
+    }
+
+    #section_3 h2,
+    #section_4 h2 {
+        font-size: 15px !important;
+        padding: 10px 10px !important;
+    }
+
+    p.text-block-css.full-width span {
+        font-size: 16px !important;
+        margin-left: 0 !important;
+    }
+}
+
+.text-block-css.full-width {
+    margin-top: 1rem;
+}
+
+table {
+    width: 100%;
+    /* Đảm bảo bảng không vượt quá chiều rộng màn hình */
+    table-layout: auto;
+    /* Tự động điều chỉnh kích thước các cột */
+}
+
+table th,
+table td {
+    font-size: 1rem;
+    /* Kích thước chữ mặc định */
+    text-align: center;
+}
+
+#section_3 h2,
+#section_4 h2 {
+    font-size: 20px;
+    padding: 10px 25px;
+    font-weight: bold;
+    color: rgba(255, 193, 7, 1);
+}
+
+.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 15px;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-title {
+    color: rgba(19, 68, 117, 1);
+    font-family: "Arial", sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+#section_5 {
+    background-image: url(../image/bg-f.jpg);
+}
+
+#section_5 .description {
+    border-color: rgba(0, 121, 37, 1);
+    border-radius: 15px;
+    border-style: solid;
+    background: rgba(145, 145, 145, 1);
+    padding: 10px;
+}
+
+#section_6 > div {
+    border-style: double;
+    border-radius: 5px;
+}
+
+.contact-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    /* margin-top: 20px; */
+}
+
+.contact-card h4 {
+    font-weight: bold;
+}
+
+.contact-info {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.map iframe {
+    border: 0;
+    border-radius: 5px;
+}
+
+
+.fixed-icons {
+    position: fixed;
+    bottom: 20px; /* Khoảng cách từ dưới */
+    right: 20px; /* Khoảng cách từ bên phải */
+    z-index: 9999; /* Đảm bảo nó hiển thị trên các phần tử khác */
+}
+
+.fixed-icons a {
+    display: block;
+    margin-bottom: 10px;
+    background-color: #34b7f1; /* Màu nền Zalo */
+    color: white;
+    padding: 15px 18px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.fixed-icons a i {
+    font-size: 30px;
+}
+
+.fixed-icons a.phone {
+    background-color: #ce0b0b; /* Màu nền điện thoại */
+}
+
+.fixed-icons a:hover {
+    transform: scale(1.1); /* Hiệu ứng khi hover */
+}
