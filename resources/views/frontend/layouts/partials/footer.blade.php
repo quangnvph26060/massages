@@ -15,9 +15,20 @@
                             {{-- <span style="color: #28a745">GU MASSAGE VIP</span> --}}
                         </h4>
                         <p class="contact-info">
-                            Địa chỉ: {{ $addresses[$key] }}
+                            Địa chỉ:
+                            @if (isset($addresses[$key]))
+                                {{ $addresses[$key] }}
+                            @else
+                                Đang cập nhật...
+                            @endif
                         </p>
-                        <p class="contact-info">Hotline/zalo: {{ $hotlines[$key] }}</p>
+                        <p class="contact-info">Hotline/zalo:
+                            @if (isset($hotlines[$key]))
+                                {{ $hotlines[$key] }}
+                            @else
+                                Đang cập nhật...
+                            @endif
+                        </p>
                     </div>
 
                     <div class="map">
