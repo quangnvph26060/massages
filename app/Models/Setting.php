@@ -10,6 +10,7 @@ class Setting extends Model
     use HasFactory;
 
     protected $fillable = [
+        'title',
         'logo',
         'icon',
         'address',
@@ -19,5 +20,9 @@ class Setting extends Model
         'title_seo',
         'description_seo',
         'keywords_seo'
+    ];
+
+    protected $casts = [
+        'map' => 'array',
     ];
 }

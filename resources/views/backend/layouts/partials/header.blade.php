@@ -49,7 +49,7 @@
                         </form>
                     </ul>
                 </li>
-               
+
                 <li class="nav-item topbar-user dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                         aria-expanded="false">
@@ -79,7 +79,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="{{route('admin.logout')}}">Logout</a>
                             </li>
                         </div>
                     </ul>

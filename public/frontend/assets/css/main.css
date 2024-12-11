@@ -1,4 +1,3 @@
-
 html {
     scroll-behavior: smooth;
 }
@@ -7,7 +6,7 @@ body {
     background-image: url("../image/bg-html.jpg");
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -343,7 +342,6 @@ table td {
     border-radius: 5px;
 }
 
-
 .fixed-icons {
     position: fixed;
     bottom: 20px; /* Khoảng cách từ dưới */
@@ -373,4 +371,72 @@ table td {
 
 .fixed-icons a:hover {
     transform: scale(1.1); /* Hiệu ứng khi hover */
+}
+
+.zalo-contact {
+    position: relative;
+    display: inline-block;
+}
+
+.zalo-contact a,
+.fixed-icons a:last-child {
+    text-decoration: none;
+    font-size: 16px;
+    color: #0078ff;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 2px solid #0078ff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.fixed-icons a:last-child i {
+    color: red;
+}
+
+.zalo-contact a:hover {
+    background-color: #0078ff;
+    color: #ffffff;
+}
+
+.zalo-contact .zalo-dropdown {
+    position: absolute;
+    top: 0;
+    right: -150px;
+    /* Ẩn ngoài bên phải */
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(20px);
+    /* Bắt đầu từ phải */
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.zalo-contact .zalo-dropdown a {
+    padding: 10px 15px;
+    color: #ff0000;
+    text-align: left;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 10px;
+}
+
+.zalo-contact .zalo-dropdown a:hover {
+    background-color: #0078ff;
+    color: #ffffff;
+}
+
+.zalo-contact .zalo-dropdown.show {
+    right: 60px;
+    /* Vị trí cạnh nút */
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    /* Hiệu ứng trượt vào */
 }

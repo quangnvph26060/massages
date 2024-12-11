@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ url('/') }}">
+                    <a href="{{ route('admin.settings') }}">
                         <i class="fas fa-cogs"></i>
                         <p>Cấu hình chung</p>
                     </a>
@@ -79,7 +79,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
                         <p>Base</p>
@@ -95,7 +95,7 @@
 
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
             </ul>
         </div>

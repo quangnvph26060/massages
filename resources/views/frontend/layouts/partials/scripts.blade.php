@@ -39,3 +39,20 @@
         });
     });
 </script>
+
+<script>
+    document.getElementById('zalo-trigger').addEventListener('click', function(e) {
+        e.preventDefault(); // Ngăn chặn hành động mặc định
+        const dropdown = document.querySelector('.zalo-dropdown');
+        dropdown.classList.toggle('show');
+    });
+
+    // Đóng dropdown nếu nhấn ra ngoài
+    document.addEventListener('click', function(e) {
+        const trigger = document.getElementById('zalo-trigger');
+        const dropdown = document.querySelector('.zalo-dropdown');
+        if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+</script>

@@ -31,6 +31,8 @@ class SettingController extends Controller
     {
         $credentials = $request->toArray();
 
+        // dd($credentials);
+
         $setting = Setting::firstOrFail();
 
         if ($request->hasFile('logo')) {

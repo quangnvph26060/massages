@@ -40,6 +40,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('dashboard');
 
         // route::resource('settings', SettingController::class);
+        route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
         route::get('settings', [SettingController::class, 'index'])->name('settings');
         route::post('settings', [SettingController::class, 'store']);

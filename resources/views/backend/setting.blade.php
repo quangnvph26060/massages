@@ -15,6 +15,17 @@
                         <div class="card-body">
 
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Tiêu đề</label>
+                                        <input type="text" name="title"
+                                            class="form-control @error('title') is-invalid @enderror"
+                                            value="{{ $settings->title }}" placeholder="Nhập title">
+                                        @error('title')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Email</label>
@@ -31,8 +42,7 @@
                                         <label>Hotline</label>
                                         <input type="text" name="hotline"
                                             class="form-control @error('hotline') is-invalid @enderror"
-                                            value="{{ $settings->hotline }}"
-                                            placeholder="Nhập số điện thoại liên hệ">
+                                            value="{{ $settings->hotline }}" placeholder="Nhập số điện thoại liên hệ">
                                         @error('hotline')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -52,22 +62,34 @@
                                         @enderror
                                     </div>
                                 </div>
+
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Map</label>
-                                        <input type="text" name="map"
-                                            class="form-control @error('map') is-invalid @enderror"
-                                            value="{{ $settings->map }}" placeholder="Nhập google map">
-                                        @error('map')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
+                                        <!-- Một container duy nhất để chứa tất cả các input map -->
+                                        <div id="map-container">
+                                            @foreach ($settings->map as $index => $item)
+                                                <div class="map-input-group mb-2">
+                                                    <input type="text" name="map[]" class="form-control"
+                                                        value="{{ $item }}" placeholder="Nhập Google Map">
+                                                    @if ($index > 0)
+                                                        <!-- Nếu không phải phần tử đầu tiên -->
+                                                        <button type="button"
+                                                            class="btn btn-danger btn-sm remove-map">Xóa</button>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <button type="button" id="add-map" class="btn btn-success btn-sm mt-2">
+                                            <i class="fas fa-plus"></i> Thêm Map
+                                        </button>
                                     </div>
                                 </div>
+
 
                             </div>
                         </div>
                     </div>
-
 
                     <div class="card">
                         <div class="card-body">
@@ -76,10 +98,10 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tiêu đề seo</label>
-                                        <input type="text" name="seo_title"
-                                            class="form-control @error('seo_title') is-invalid @enderror"
-                                            value="{{ $settings->seo_title }}" placeholder="Nhập tiêu đề seo">
-                                        @error('seo_title')
+                                        <input type="text" name="title_seo"
+                                            class="form-control @error('title_seo') is-invalid @enderror"
+                                            value="{{ $settings->title_seo }}" placeholder="Nhập tiêu đề seo">
+                                        @error('title_seo')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -101,7 +123,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Mô tả seo</label>
-                                        <textarea rows="8" name="description_seo" class="form-control @error('description_seo') is-invalid @enderror" placeholder="Nhập mô tả seo">{{ $settings->description_seo }}</textarea>
+                                        <textarea rows="8" name="description_seo" class="form-control @error('description_seo') is-invalid @enderror"
+                                            placeholder="Nhập mô tả seo">{{ $settings->description_seo }}</textarea>
                                         @error('description_seo')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -125,8 +148,8 @@
                             @error('logo')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
-                            <input type="file" name="logo" id="logo" class="form-control d-none" accept="image/*"
-                                onchange="previewImage(event, 'show_logo')">
+                            <input type="file" name="logo" id="logo" class="form-control d-none"
+                                accept="image/*" onchange="previewImage(event, 'show_logo')">
                         </div>
                     </div>
 
@@ -141,8 +164,8 @@
                             @error('icon')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
-                            <input type="file" name="icon" id="icon" class="form-control d-none" accept="image/*"
-                                onchange="previewImage(event, 'show_icon')">
+                            <input type="file" name="icon" id="icon" class="form-control d-none"
+                                accept="image/*" onchange="previewImage(event, 'show_icon')">
                         </div>
                     </div>
 
@@ -163,6 +186,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.7.0/tagify.min.js"></script>
 
     <script>
+        document.getElementById('add-map').addEventListener('click', function() {
+            const mapContainer = document.getElementById('map-container');
+
+            // Tạo một ô input mới
+            const newInputGroup = document.createElement('div');
+            newInputGroup.classList.add('map-input-group', 'mb-2');
+            newInputGroup.innerHTML = `
+        <input type="text" name="map[]" class="form-control" placeholder="Nhập Google Map">
+        <button type="button" class="btn btn-danger btn-sm remove-map">Xóa</button>
+    `;
+
+            // Thêm vào cuối container
+            mapContainer.appendChild(newInputGroup);
+
+            // Gán sự kiện xóa cho nút "Xóa" mới tạo
+            newInputGroup.querySelector('.remove-map').addEventListener('click', function() {
+                newInputGroup.remove();
+            });
+        });
+
+        // Gán sự kiện xóa cho các nút "Xóa" hiện có
+        document.querySelectorAll('.remove-map').forEach(function(button) {
+            button.addEventListener('click', function() {
+                button.parentElement.remove();
+            });
+        });
+
+
+
         const input = document.querySelector('#keywords_seo');
         const tagify = new Tagify(input, {
             dropdown: {
@@ -191,6 +243,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.7.0/tagify.css">
 
     <style>
+        .map-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .map-input-group input {
+            flex: 1;
+        }
+
+        .map-input-group .remove-map {
+            color: #fff;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .map-input-group .remove-map:hover {
+            background-color: #c82333;
+        }
+
         .tagify__tag {
             margin-top: 3px !important;
         }
