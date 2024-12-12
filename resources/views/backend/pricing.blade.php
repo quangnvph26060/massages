@@ -13,7 +13,8 @@
 
                     <div class="form-group">
                         <label for="" class="form-label">Tiêu đề</label>
-                        <input type="text" placeholder="Nhập tiêu đề" value="{{$pricing->title}}" name="title" class="form-control">
+                        <input type="text" placeholder="Nhập tiêu đề" value="{{ $pricing->title }}" name="title"
+                            class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -33,6 +34,7 @@
 
 @push('scripts')
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('ckfinder_2/ckfinder.js') }}"></script>
 
     <script>
         const BASE_URL = "{{ url('/') }}";
@@ -40,6 +42,8 @@
 
     <script>
         CKEDITOR.replace('description', {
+            filebrowserImageUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form',
             height: 400
         });
     </script>

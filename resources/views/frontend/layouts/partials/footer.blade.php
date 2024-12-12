@@ -4,38 +4,49 @@
             <!-- Contact Information -->
 
             @php
-                $addresses = explode('|', $settings->address);
-                $hotlines = explode('|', $settings->hotline);
+                $base = [
+                    'title_base' => $settings->title_base ?? [],
+                    'hotline' => $settings->hotline ?? [],
+                    'address' => $settings->address ?? [],
+                    'map' => $settings->map ?? [],
+                ];
+
+                // Tìm độ dài lớn nhất trong các mảng
+                $maxLength = max(
+                    count($base['title_base']),
+                    count($base['hotline']),
+                    count($base['address']),
+                    count($base['map']),
+                );
+
+                // Bổ sung giá trị null nếu mảng ngắn hơn độ dài lớn nhất
+                foreach ($base as $key => $values) {
+                    $base[$key] = array_pad($values, $maxLength, null);
+                }
             @endphp
-            @foreach ($settings->map as $key => $item)
+
+            @foreach (range(0, $maxLength - 1) as $i)
                 <div class="col-md-6">
                     <div class="contact-card mb-2">
                         <h4>
-                            THÔNG TIN LIÊN HỆ - CỞ SỞ {{ $key + 1 }}
-                            {{-- <span style="color: #28a745">GU MASSAGE VIP</span> --}}
+                            {{ $base['title_base'][$i] ?? 'Tiêu đề chưa cập nhật' }}
                         </h4>
                         <p class="contact-info">
                             Địa chỉ:
-                            @if (isset($addresses[$key]))
-                                {{ $addresses[$key] }}
-                            @else
-                                Đang cập nhật...
-                            @endif
+                            {{ $base['address'][$i] ?? 'Đang cập nhật...' }}
                         </p>
-                        <p class="contact-info">Hotline/zalo:
-                            @if (isset($hotlines[$key]))
-                                {{ $hotlines[$key] }}
-                            @else
-                                Đang cập nhật...
-                            @endif
+                        <p class="contact-info">
+                            Hotline/zalo:
+                            {{ $base['hotline'][$i] ?? 'Đang cập nhật...' }}
                         </p>
                     </div>
 
                     <div class="map">
-                        {!! $item !!}
+                        {!! $base['map'][$i] ?? '<p>Chưa có bản đồ được thêm.</p>' !!}
                     </div>
                 </div>
             @endforeach
+
 
 
         </div>

@@ -26,7 +26,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <input type="text" name="email"
@@ -36,56 +36,79 @@
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Hotline</label>
-                                        <input type="text" name="hotline"
-                                            class="form-control @error('hotline') is-invalid @enderror"
-                                            value="{{ $settings->hotline }}" placeholder="Nhập số điện thoại liên hệ">
-                                        @error('hotline')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
+                                </div> --}}
+
+
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Địa chỉ</label>
-                                        <input type="text" name="address"
-                                            class="form-control @error('address') is-invalid @enderror"
-                                            value="{{ $settings->address }}" placeholder="Nhập địa chỉ">
-                                        @error('address')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Map</label>
-                                        <!-- Một container duy nhất để chứa tất cả các input map -->
-                                        <div id="map-container">
-                                            @foreach ($settings->map as $index => $item)
-                                                <div class="map-input-group mb-2">
-                                                    <input type="text" name="map[]" class="form-control"
-                                                        value="{{ $item }}" placeholder="Nhập Google Map">
-                                                    @if ($index > 0)
-                                                        <!-- Nếu không phải phần tử đầu tiên -->
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-sm remove-map">Xóa</button>
-                                                    @endif
-                                                </div>
-                                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <h3 class="card-title">Cơ sở</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-success btn-sm btn-add">Thêm (+)</button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="base">
+                                @php
+                                    $base = [
+                                        'title_base' => $settings->title_base,
+                                        'hotline' => $settings->hotline,
+                                        'address' => $settings->address,
+                                        'map' => $settings->map,
+                                    ];
+
+                                    $maxLength = max(
+                                        count($base['hotline']),
+                                        count($base['address']),
+                                        count($base['map']),
+                                    );
+
+                                    foreach ($base as $key => $values) {
+                                        $base[$key] = array_pad($values, $maxLength, null);
+                                    }
+
+                                @endphp
+
+                                @foreach (range(0, $maxLength - 1) as $i)
+                                    <div class="form-group shadow bg-body rounded">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="" class="form-label">Tiêu đề cơ sở</label>
+                                                <input type="text" name="title_base[]" class="form-control"
+                                                    placeholder="Nhập tiêu đề cơ sở"
+                                                    value="{{ $base['title_base'][$i] ?? '' }}">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="" class="form-label">Hotline</label>
+                                                <input type="text" name="hotline[]" class="form-control"
+                                                    placeholder="Nhập số điện thoại liên hệ"
+                                                    value="{{ $base['hotline'][$i] ?? '' }}">
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <label>Địa chỉ</label>
+                                                <input type="text" name="address[]" class="form-control"
+                                                    placeholder="Nhập địa chỉ" value="{{ $base['address'][$i] ?? '' }}">
+                                            </div>
+
+                                            <div class="col-md-12 mt-3">
+                                                <label>Map</label>
+                                                <input type="text" name="map[]" class="form-control"
+                                                    placeholder="Nhập Google Map" value="{{ $base['map'][$i] ?? '' }}">
+                                            </div>
+
+                                            <div class="col-md-12 mt-3 text-end">
+                                                <button type="button" class="btn btn-danger btn-sm btn-remove">Xóa</button>
+                                            </div>
                                         </div>
-                                        <button type="button" id="add-map" class="btn btn-success btn-sm mt-2">
-                                            <i class="fas fa-plus"></i> Thêm Map
-                                        </button>
                                     </div>
-                                </div>
-
+                                @endforeach
 
                             </div>
                         </div>
@@ -186,31 +209,61 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.7.0/tagify.min.js"></script>
 
     <script>
-        document.getElementById('add-map').addEventListener('click', function() {
-            const mapContainer = document.getElementById('map-container');
+        function toggleRemoveButton() {
+            const totalBlocks = $('.base .form-group').length;
+            if (totalBlocks === 1) {
+                $('.btn-remove').hide();
+            } else {
+                $('.btn-remove').show();
+            }
+        }
 
-            // Tạo một ô input mới
-            const newInputGroup = document.createElement('div');
-            newInputGroup.classList.add('map-input-group', 'mb-2');
-            newInputGroup.innerHTML = `
-        <input type="text" name="map[]" class="form-control" placeholder="Nhập Google Map">
-        <button type="button" class="btn btn-danger btn-sm remove-map">Xóa</button>
-    `;
-
-            // Thêm vào cuối container
-            mapContainer.appendChild(newInputGroup);
-
-            // Gán sự kiện xóa cho nút "Xóa" mới tạo
-            newInputGroup.querySelector('.remove-map').addEventListener('click', function() {
-                newInputGroup.remove();
-            });
+        // Khởi tạo: Ẩn nút "Xóa" nếu chỉ có 1 khối
+        $(document).ready(function() {
+            toggleRemoveButton();
         });
 
-        // Gán sự kiện xóa cho các nút "Xóa" hiện có
-        document.querySelectorAll('.remove-map').forEach(function(button) {
-            button.addEventListener('click', function() {
-                button.parentElement.remove();
-            });
+        // Thêm khối mới
+        $(document).on('click', '.btn-add', function() {
+            const newElement = `
+                    <div class="form-group shadow bg-body rounded mt-3">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="" class="form-label">Tiêu đề cơ sở</label>
+                                <input type="text" name="title_base[]" class="form-control" placeholder="Nhập tiêu đề cơ sở">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Hotline</label>
+                                <input type="text" name="hotline[]" class="form-control" placeholder="Nhập số điện thoại liên hệ">
+                            </div>
+
+                            <div class="col-md-8">
+                                <label>Địa chỉ</label>
+                                <input type="text" name="address[]" class="form-control" placeholder="Nhập địa chỉ">
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label>Map</label>
+                                <input type="text" name="map[]" class="form-control" placeholder="Nhập Google Map">
+                            </div>
+
+                            <div class="col-md-12 mt-3 text-end">
+                                <button type="button" class="btn btn-danger btn-sm btn-remove">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+            $('.base').append(newElement);
+            toggleRemoveButton();
+        });
+
+
+        // Xóa khối
+        $(document).on('click', '.btn-remove', function() {
+            $(this).closest('.form-group').remove();
+            toggleRemoveButton();
         });
 
 

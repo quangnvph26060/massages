@@ -1,6 +1,6 @@
 <div class="container d-flex align-items-center justify-content-between py-2">
     <img src="{{ showImage($settings->logo) }}" class="img-fluid rounded" alt="Logo" style="height: 60px" />
-    <a target="_bank" href="tel:{{ str_replace(' ', '', $settings->hotline) }}">
+    <a target="_bank" href="tel:{{ str_replace(' ', '', $settings->hotline[0]) }}">
         <button class="btn-dat-phong d-md-none">ĐẶT PHÒNG</button>
     </a>
     <button class="btn d-md-none" id="menu-toggle">
@@ -17,7 +17,7 @@
         <a href="#lienhe" class="text-decoration-none text-dark">LIÊN HỆ</a>
     </nav>
 
-    <a target="_bank" href="tel:{{ str_replace(' ', '', $settings->hotline) }}">
+    <a target="_bank" href="tel:{{ str_replace(' ', '', $settings->hotline[0]) }}">
         <button class="btn-dat-phong d-none d-lg-block">ĐẶT PHÒNG</button>
     </a>
 </div>

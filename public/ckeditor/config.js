@@ -8,7 +8,7 @@ CKEDITOR.editorConfig = function (config) {
         BASE_URL + "/assets/servers/plugin/ckfinder_2/ckfinder.html"),
         (config.filebrowserImageBrowseUrl =
             BASE_URL +
-            "/filemanager-browse?type=Images"),
+            "/ckfinder_2/ckfinder.html?type=Images"),
         (config.filebrowserFlashBrowseUrl =
             BASE_URL +
             "/assets/servers/plugin/ckfinder_2/ckfinder.html?type=Flash");

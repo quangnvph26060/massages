@@ -51,7 +51,7 @@ class FacilityController extends Controller
             if ($request->hasFile("items.facility_images.$key")) {
                 deleteImage($imagePath);
                 // $imagePath = $request->file("items.facility_images.$key")->store('facilities', 'public');
-                $imagePath = saveImages($request, "items.facility_images.$key", 'facilities', 489, 489);
+                $imagePath = saveImages($request, "items.facility_images.$key", 'facilities', 1080, 720);
             }
 
             $updatedItems[] = [

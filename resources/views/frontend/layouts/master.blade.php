@@ -73,11 +73,8 @@
                 <i class="fab fa-facebook-messenger"></i> <!-- Dùng icon Zalo -->
             </a>
             <div class="zalo-dropdown">
-                @php
-                    $hotlines = explode('|', $settings->hotline);
-                @endphp
 
-                @foreach ($hotlines as $item)
+                @foreach ($settings->hotline as $item)
                     <a href="https://zalo.me/{{ str_replace(' ', '', $item) }}" target="_blank">
                         <strong> {{ $item }}</strong>
                     </a>
@@ -91,7 +88,7 @@
 
 
         <!-- Điện thoại -->
-        <a href="tel:{{ str_replace(' ', '', $settings->hotline) }}" class="phone" title="Gọi điện">
+        <a href="tel:{{ str_replace(' ', '', $settings->hotline[0]) }}" class="phone" title="Gọi điện">
             <i class="fas fa-phone-alt"></i> <!-- Dùng icon điện thoại -->
         </a>
     </div>

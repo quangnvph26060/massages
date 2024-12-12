@@ -50,7 +50,8 @@ class ServiceController extends Controller
             // Kiểm tra và lưu ảnh mới nếu có
             if ($request->hasFile("items.service_images.$key")) {
                 deleteImage($imagePath);
-                $imagePath = $request->file("items.service_images.$key")->store('services', 'public');
+                // $imagePath = $request->file("items.service_images.$key")->store('services', 'public');
+                $imagePath = saveImages($request, "items.service_images.$key", 'services', 1080, 720);
             }
 
             $updatedItems[] = [

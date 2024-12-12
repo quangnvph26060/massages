@@ -13,6 +13,7 @@ class Setting extends Model
         'title',
         'logo',
         'icon',
+        'title_base',
         'address',
         'hotline',
         'map',
@@ -24,5 +25,8 @@ class Setting extends Model
 
     protected $casts = [
         'map' => 'array',
+        'hotline' => 'array',
+        'address' => 'array',
+        'title_base' => 'array',
     ];
 }

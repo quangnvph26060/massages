@@ -6,7 +6,9 @@ use App\Models\Pricing;
 use App\Models\Service;
 use App\Models\Facility;
 use App\Models\Introduction;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Backend\BannerController;
@@ -64,6 +66,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
         route::post('introductions', [IntroductionController::class, 'store']);
     });
 });
+
+Route::post('upload', function (Request $request) {
+    if ($request->hasFile('upload')) {
+        $image = $request->file('upload');
+        $filename = time() . uniqid() . '.' . $image->getClientOriginalExtension();
+        Storage::disk('public')->put('images' . '/' . $filename, file_get_contents($image->getPathName()));
+        $path = 'images' . '/' . $filename;
+        $url = Storage::url($path);
+        $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+        $msg = 'Image uploaded successfully';
+
+        return "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg');</script>";
+    }
+})->name('ckeditor.upload');
 
 
 
