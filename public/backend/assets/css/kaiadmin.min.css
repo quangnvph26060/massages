@@ -1373,7 +1373,7 @@ body {
 .logo-header {
     float: left;
     width: 265px;
-    height: 70px;
+    height: 125px;
     line-height: 60px;
     color: #333;
     z-index: 1001;
@@ -2518,7 +2518,7 @@ body[data-background-color="dark"] .border-top {
     background: #fafafe !important;
 }
 .logo-header[data-background-color="dark"] {
-    background: #1a2035 !important;
+    background: #60607d !important;
 }
 .logo-header[data-background-color="dark2"] {
     background: #151a2b !important;
@@ -2605,7 +2605,7 @@ body[data-background-color="dark"] .border-top {
     background: #fafafe;
 }
 .sidebar[data-background-color="dark"] {
-    background: #1a2035 !important;
+    background: #60607d !important;
 }
 .sidebar[data-background-color="dark"] .user {
     border-color: rgba(181, 181, 181, 0.1) !important;
@@ -8742,7 +8742,7 @@ label.error {
         transition: all 0.5s;
     }
     .topbar_open .navbar-header {
-        transform: translate3d(0, 70px, 0) !important;
+        transform: translate3d(0, 120px, 0) !important;
         background: #fff;
     }
     .topbar_open .navbar-header .navbar-nav > .nav-item .nav-link i {
@@ -8936,6 +8936,7 @@ label.error {
     .main-panel > .container,
     .main-panel > .container-full {
         padding: 0 !important;
+        margin-top: 140px;
     }
     #chart-container {
         min-height: 250px;
