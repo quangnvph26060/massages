@@ -124,6 +124,12 @@ nav a {
     display: none;
 }
 
+@media (min-width: 768px) {
+    #section_2 > div {
+        padding: 0 150px;
+    }
+}
+
 @media (max-width: 991px) {
     /* Ẩn menu chính và hiển thị hamburger menu dưới 992px */
     nav {
@@ -204,7 +210,16 @@ table tr th {
     margin-bottom: 20px;
 }
 
+.table-responsive img {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
 @media (max-width: 768px) {
+    h2 {
+        font-size: 2rem !important;
+    }
     .map {
         margin-top: 10px;
     }
