@@ -17,7 +17,7 @@
         <a href="#lienhe" class="text-decoration-none text-dark">LIÊN HỆ</a>
     </nav>
 
-    <a target="_bank" href="tel:{{ str_replace(' ', '', $settings->hotline[0]) }}">
-        <button class="btn-dat-phong d-none d-lg-block">ĐẶT PHÒNG</button>
+    <a target="_bank" class="d-none d-lg-block" href="tel:{{ str_replace(' ', '', $settings->hotline[0]) }}">
+        <button class="btn-dat-phong ">ĐẶT PHÒNG</button>
     </a>
 </div>

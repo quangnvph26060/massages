@@ -214,7 +214,7 @@ table tr th {
     }
 
     .banner {
-        height: 40vh;
+        height: 55vh;
     }
 
     .video iframe {
@@ -335,6 +335,7 @@ table td {
 .contact-info {
     color: #dc3545;
     font-weight: bold;
+    font-size: 15px;
 }
 
 .map iframe {
