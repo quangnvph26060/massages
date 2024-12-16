@@ -20,6 +20,12 @@ class VideoController extends Controller
 
         $credentials = $request->toArray();
 
+        if ($request->hasFile('video')) {
+            $credentials['file_path'] = $request->file('video')->store('videos', 'public');
+            $credentials['url'] = $request->input('title');
+            deleteImage($video->file_path);
+        }
+
         $video->update($credentials);
 
         toastr()->success('Cập nhật thành công.');

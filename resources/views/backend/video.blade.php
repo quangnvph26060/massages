@@ -11,7 +11,7 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
@@ -20,8 +20,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="form-label">Link video</label>
-                        <input value="{{$video->url}}" type="text" placeholder="Nhập tiêu đề" name="url" class="form-control">
+                        <label for="" class="form-label">Video</label>
+                        <input type="file" name="video" id="video" class="form-control" accept="video/mp4" required>
+                        {{-- <input value="{{$video->url}}" type="text" placeholder="Nhập tiêu đề" name="url" class="form-control"> --}}
                     </div>
 
                     <div class="form-group">
