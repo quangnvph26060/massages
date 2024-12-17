@@ -380,10 +380,6 @@ table td {
     font-size: 30px;
 }
 
-.fixed-icons a.phone {
-    background-color: #ce0b0b; /* Màu nền điện thoại */
-}
-
 .fixed-icons a:hover {
     transform: scale(1.1); /* Hiệu ứng khi hover */
 }
@@ -393,26 +389,33 @@ table td {
     display: inline-block;
 }
 
-
-
-.zalo-contact a,
-.fixed-icons a{
+.fixed-icons a {
     text-decoration: none;
     font-size: 16px;
     color: #0078ff;
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 2px solid #0078ff;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.fixed-icons a:first-child{
-    background-color: rgba(33, 150, 243, 0.7) !important;
+.fixed-icons .zalo-contact #zalo-trigger {
+    background-color: rgba(33, 150, 243, 0.7);
 }
-.fixed-icons a:last-child{
-    border: none !important;
-    background-color: #e60808; /* Màu nền Zalo */
+
+.fixed-icons .zalo-contact #zalo-trigger:hover {
+    background-color: rgb(33, 150, 243);
+}
+
+.fixed-icons .zalo-contact .zalo-dropdown a {
+    background-color: rgba(33, 150, 243, 0.7);
+}
+.fixed-icons .phone {
+    background-color: rgba(230, 8, 8, 0.7); /* Màu nền Zalo */
+}
+
+.fixed-icons .phone:hover {
+    background-color: rgb(230, 8, 8);
 }
 
 .fixed-icons a:last-child i {
@@ -420,7 +423,6 @@ table td {
 }
 
 .zalo-contact a:hover {
-    /* background-color: #0078ff; */
     color: #ffffff;
 }
 
@@ -443,7 +445,7 @@ table td {
 
 .zalo-contact .zalo-dropdown a {
     padding: 10px 15px;
-    color: #ff0000;
+    color: #ffffff;
     text-align: left;
     text-decoration: none;
     font-size: 14px;

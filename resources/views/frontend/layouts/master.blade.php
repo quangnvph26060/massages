@@ -75,7 +75,6 @@
                 </a>
             </div>
             <div class="zalo-dropdown">
-
                 @foreach ($settings->hotline as $item)
                     <a href="https://zalo.me/{{ str_replace(' ', '', $item) }}" target="_blank">
                         <strong> {{ $item }}</strong>
