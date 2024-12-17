@@ -368,7 +368,6 @@ table td {
 .fixed-icons a {
     display: block;
     margin-bottom: 10px;
-    background-color: #34b7f1; /* Màu nền Zalo */
     color: white;
     padding: 15px 18px;
     border-radius: 50%;
@@ -394,25 +393,34 @@ table td {
     display: inline-block;
 }
 
+
+
 .zalo-contact a,
-.fixed-icons a:last-child {
+.fixed-icons a{
     text-decoration: none;
     font-size: 16px;
     color: #0078ff;
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #ffffff;
     border: 2px solid #0078ff;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.fixed-icons a:first-child{
+    background-color: rgba(33, 150, 243, 0.7) !important;
+}
+.fixed-icons a:last-child{
+    border: none !important;
+    background-color: #e60808; /* Màu nền Zalo */
+}
+
 .fixed-icons a:last-child i {
-    color: red;
+    color: #ffffff;
 }
 
 .zalo-contact a:hover {
-    background-color: #0078ff;
+    /* background-color: #0078ff; */
     color: #ffffff;
 }
 

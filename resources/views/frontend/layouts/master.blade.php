@@ -69,9 +69,11 @@
     <div class="fixed-icons">
         <!-- Zalo -->
         <div class="zalo-contact">
-            <a href="#" id="zalo-trigger" title="Liên hệ Zalo">
-                <i class="fab fa-facebook-messenger"></i> <!-- Dùng icon Zalo -->
-            </a>
+            <div class="phone-vr-img-circle">
+                <a href="#" id="zalo-trigger" title="Liên hệ Zalo">
+                    <img width="30" src="{{ asset('frontend/assets/image/zalo.png') }}" alt="">
+                </a>
+            </div>
             <div class="zalo-dropdown">
 
                 @foreach ($settings->hotline as $item)
@@ -79,10 +81,6 @@
                         <strong> {{ $item }}</strong>
                     </a>
                 @endforeach
-
-                {{-- <a href="https://zalo.me/{{ str_replace(' ', '', $settings->hotline) }}" target="_blank">
-                    <strong>{{ $settings->hotline }}</strong>
-                </a> --}}
             </div>
         </div>
 
