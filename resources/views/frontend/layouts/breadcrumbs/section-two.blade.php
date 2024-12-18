@@ -10,6 +10,7 @@
 </ul> -->
 
     <div class="table-responsive rounded p-3" style="border-style: double">
-        {!! $pricing->description !!}
+
+        <img src="{{ showImage($pricing->description) }}" alt="">
     </div>
 </div>

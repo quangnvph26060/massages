@@ -19,7 +19,14 @@ class PricingController extends Controller
     {
         $pricing = Pricing::firstOrCreate();
 
+
+
         $credentials = $request->toArray();
+
+        if ($request->hasFile('description')) {
+            deleteImage($pricing->description);
+            $credentials['description'] = saveImage($request, 'description', 'pricing');
+        }
 
         $pricing->update($credentials);
 

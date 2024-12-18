@@ -8,7 +8,7 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
@@ -18,9 +18,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="" class="form-label">Tiêu đề</label>
-                        <textarea name="description" id="description" cols="30" rows="10">{!! $pricing->description !!}</textarea>
-
+                        {{-- <label for="" class="form-label">Tiêu đề</label>
+                        <textarea name="description" id="description" cols="30" rows="10">{!! $pricing->description !!}</textarea> --}}
+                        <input type="file" name="description" id="description" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -33,18 +33,18 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    {{-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder_2/ckfinder.js') }}"></script>
 
     <script>
         const BASE_URL = "{{ url('/') }}";
-    </script>
+    </script> --}}
 
     <script>
-        CKEDITOR.replace('description', {
-            filebrowserImageUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
-            filebrowserUploadMethod: 'form',
-            height: 400
-        });
+        // CKEDITOR.replace('description', {
+        //     filebrowserImageUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+        //     filebrowserUploadMethod: 'form',
+        //     height: 400
+        // });
     </script>
 @endpush
